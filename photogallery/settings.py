@@ -118,3 +118,9 @@ CSRF_TRUSTED_ORIGINS = [
     'https://django-sj28.onrender.com',
     'https://*.onrender.com',
 ]
+# Tell Django to trust Render's proxy
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# Only redirect to HTTPS if actually on Render
+SECURE_SSL_REDIRECT = os.environ.get('RENDER', None) is not None
+
